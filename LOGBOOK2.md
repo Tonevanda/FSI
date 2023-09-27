@@ -22,3 +22,8 @@
 - Este ataque tinha potencial para roubar toda a informação dos utilizadores incluindo morada, NIF, 4 dígitos do cartão de crédito, etc.
 - Gustavo Silva, após a descoberta desta vulnerabilidade, relatou aos desenvolvedores, que corrigiram o erro.
 - Não existe relatos do mesmo ataque ter sido utilizado antes da vulnerabilidade ter sido corrigida.
+
+
+### Referências adicionais
+
+- https://gustavosilva.me/blog/2018/10/23/How-I-hacked-Anda-the-public-transportation-app-of-Porto-CVE-2018-13342.html
