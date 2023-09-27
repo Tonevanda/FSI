@@ -1,9 +1,8 @@
-
 Breve descrição do grupo
 
-* Turno: [L]XX
-* Grupo: YY
+* Turno: L03
+* Grupo: 07
 * Alunos:
-    - Aluno1 upZZZZZ 
-    - Aluno2 upZZZZZ
-    - Aluno3 upZZZZZ
+    - João Miguel da Silva Lourenço up202108863 
+    - Tiago Ribeiro de Sá Cruz up202108810
+    - Isabel Maria Lima Moutinho up202108767
