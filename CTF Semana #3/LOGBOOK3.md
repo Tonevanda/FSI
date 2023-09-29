@@ -6,7 +6,7 @@
 
 ## Primeira Fase - Reconhecimento
 
-Primeiramente, começamos por explorar o site para tentar recolher o máximo de informação pertinente ao site, que nos permitisse encontrar uma vulnerabilidade. Para isso procuramos, especificamente, por plugins instalados, versões dos plugins, versão do próprio Wordpress e possíveis contas criadas no site, em específico a conta admin, já que o nosso objetivo era sermos autenticados como admin. Recolhemos a seguinte informação:
+Primeiramente, começamos por explorar o site para tentar recolher o máximo de informação possível pertinente ao site que nos permitisse encontrar uma vulnerabilidade. Para isso procuramos, especificamente, por plugins instalados, versões dos plugins, versão do próprio Wordpress e possíveis contas criadas no site, em específico a conta admin, já que o nosso objetivo era sermos autenticados como admin. Recolhemos a seguinte informação:
 
 - Versão do Wordpress: 5.8.1
 - Plugins instalados: WooCommerce e Booster for WooCommerce
