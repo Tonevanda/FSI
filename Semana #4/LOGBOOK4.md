@@ -32,3 +32,8 @@ De facto, tal como referido na task 4, o excerto de código providenciado no gui
 
 ## Task 5: Environment Variable and Set-UID Programs
 
+
+Depois de compilar o programa, mudar o owner e tornar o programa um Set-UID program com os comandos explicitados no guião, só resta usar o **export** command para dar set às environment variables, neste caso, o **PATH**, o **LD_LIBRARY_PATH** e também qualquer outra variável que queiramos criar.
+Após rodar o programa descobrimos algo interessante. A variável **PATH** e as que nós criamos foram imprimidas no terminal ou seja, foram herdadas pelo child process. Pelo contrário, a variável **LD_LIBRARY_PATH** não estava presente ou seja, não foi herdada pelo Set-UID program's process.
+
+
