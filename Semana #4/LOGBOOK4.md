@@ -14,7 +14,21 @@ export VARIAVEL=VALOR_DESEJADO
 ## Task 2: Passing Environment Variables from Parent Process to Child Process
 
 
-Após compilar o ficheiro **myprintenv.c** com o **printenv()** no child process e rodar e, posteriormente, repetir o processo mas comentar o **printenv()** do child process e descomentar o do parent process, quando comparamos os ficheiros de output de ambos com o comando **diff**, notamos que são iguais, o que nos diz que, depois de dar **fork()**, o child process herda as environment variables do parent process.
+Após compilar o ficheiro **myprintenv.c** com o **printenv()** no child process e rodar e, posteriormente, repetir o processo, mas comentar o **printenv()** do child process e descomentar o do parent process, quando comparamos os ficheiros de output de ambos com o comando **diff**, notamos que são iguais o que nos diz que, depois de dar **fork()**, o child process herda as environment variables do parent process.
 
 
 ## Task 3: Environment Variables and execve()
+
+
+Depois de compilar e rodar o programa **myenv.c** pela primeira vez, com o terceiro parâmetro da função **execve()** em NULL, nada acontece, mas, se trocarmos NULL por environ, que é um array de pointers para o ***environment***, onde estão as environment variables, o programa imprime, de facto, as environment variables.
+Com isto, podemos concluir que, se o ***environment*** não for passado como parâmetro para a função **execve()**, o novo programa não tem acesso às environment variables do programa que o chamou.
+
+
+## Task 4: Environment Variables and system()
+
+
+De facto, tal como referido na task 4, o excerto de código providenciado no guião, através da função **system()** imprime as environment variables no terminal, pois, na própria implementação da função **system()**, é chamado **execve()** e passado o environment como parâmetro.
+
+
+## Task 5: Environment Variable and Set-UID Programs
+
