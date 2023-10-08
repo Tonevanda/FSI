@@ -12,3 +12,6 @@ export VARIAVEL=VALOR_DESEJADO
 ``` 
 
 ## Task 2: Passing Environment Variables from Parent Process to Child Process
+
+
+Após compilar o ficheiro **myprintenv.c**
