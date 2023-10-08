@@ -37,3 +37,13 @@ Depois de compilar o programa, mudar o owner e tornar o programa um Set-UID prog
 Após rodar o programa descobrimos algo interessante. A variável **PATH** e as que nós criamos foram imprimidas no terminal ou seja, foram herdadas pelo child process. Pelo contrário, a variável **LD_LIBRARY_PATH** não estava presente ou seja, não foi herdada pelo Set-UID program's process.
 
 
+## Task 6: The PATH Environment Variable and Set-UID Programs
+
+
+Alterando a environment variable **PATH** irá fazer com que, depois de correr ` system("ls") `, se existir um ficheiro com o nome **ls**, a chamada será feita a esse programa e, como o programa com a system call é um Set-UID program com root owner, então o programa impostor, também chamado **ls**, irá correr com root perms. 
+Isto traz grande problemas de segurança, pois um atacante pode utilizar esta vulnerabilidade para correr código malicioso com privilégios de root.
+
+
+## Task 7: The LD PRELOAD Environment Variable and Set-UID Programs
+
+
