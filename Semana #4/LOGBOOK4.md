@@ -14,4 +14,7 @@ export VARIAVEL=VALOR_DESEJADO
 ## Task 2: Passing Environment Variables from Parent Process to Child Process
 
 
-Após compilar o ficheiro **myprintenv.c**
+Após compilar o ficheiro **myprintenv.c** com o **printenv()** no child process e rodar e, posteriormente, repetir o processo mas comentar o **printenv()** do child process e descomentar o do parent process, quando comparamos os ficheiros de output de ambos com o comando **diff**, notamos que são iguais, o que nos diz que, depois de dar **fork()**, o child process herda as environment variables do parent process.
+
+
+## Task 3: Environment Variables and execve()
