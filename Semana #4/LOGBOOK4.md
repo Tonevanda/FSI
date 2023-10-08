@@ -43,7 +43,3 @@ Após rodar o programa descobrimos algo interessante. A variável **PATH** e as 
 Alterando a environment variable **PATH** irá fazer com que, depois de correr ` system("ls") `, se existir um ficheiro com o nome **ls**, a chamada será feita a esse programa e, como o programa com a system call é um Set-UID program com root owner, então o programa impostor, também chamado **ls**, irá correr com root perms. 
 Isto traz grande problemas de segurança, pois um atacante pode utilizar esta vulnerabilidade para correr código malicioso com privilégios de root.
 
-
-## Task 7: The LD PRELOAD Environment Variable and Set-UID Programs
-
-
