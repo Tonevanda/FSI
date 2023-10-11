@@ -34,6 +34,8 @@ Muito rápido percebemos que sim, pois são criados 2 buffers:
 - buffer[32] : buffer que irá lê o input e imprime no terminal
 
 O buffer de leitura só tem 32 bytes de espaço, mas no código é chamada a função **scanf()** que vai ler 40 bytes.<br>
-Ora, desta forma, podemos enviar uma mensagem de 32 bytes e, como vão ser lidos 40 bytes, podemos escrever mais 8 bytes na memória e, deste modo, fazer buffer overflow.<br>
+Ora, desta forma, podemos enviar uma mensagem de 32 bytes e, como vão ser lidos 40 bytes, podemos escrever mais 8 bytes na memória e, deste modo, fazer **buffer overflow**.<br>
 Como o buffer e o meme_file estão em posições contínuas na memória, os 8 bytes a mais que escrevermos serão escritos no meme_file.<br>
 Como o meme_file contém o nome do ficheiro que será aberto pelo `main.c`, se alterarmos este buffer para "flag.txt" então conseguimos obter a flag. 
+
+
