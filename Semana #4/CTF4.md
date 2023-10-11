@@ -63,6 +63,8 @@ cat > env
 LD_PRELOAD=/tmp/liblib.so.1.0.1
 ```
 
+Assim, a nossa função **access()** maliciosa vai dar **override** à função **access()** da standard C library.
+
 Agora, basta esperar que o my_script.sh rode mais uma vez e a flag estará dentro do text.txt.
 
 No nosso caso era `flag{90069b3c95cdd8df71e65ce0fd7ce815}`
