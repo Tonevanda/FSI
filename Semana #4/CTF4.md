@@ -5,7 +5,7 @@
 
 Primeiramente, começamos por recolher o máximo de informação possível sobre o sistema, de forma a tentar encontrar alguma vulnerabilidade.
 
-O ficheiro **admin_note.txt** deu-nos uma dica, que existe uma vulnerabilidade na tmp folder que nos permitiria chegar à flag. Além disso, depois de ler o ficheiro **main.c**, através do comando **cat**, descobrimos que, possivelmente, existe um ficheiro chamado ***flag.txt*** na folder flags.
+O ficheiro **admin_note.txt** deu-nos uma dica que existe uma vulnerabilidade na tmp folder que nos permitiria chegar à flag. Além disso, depois de ler o ficheiro **main.c**, através do comando **cat**, descobrimos que, possivelmente, existe um ficheiro chamado ***flag.txt*** na folder flags.
 
 ``` 
 cat main.c
