@@ -4,7 +4,9 @@
 ## Identificação de vulnerabilidades
 
 Primeiramente, começamos por recolher o máximo de informação possível sobre o sistema, de forma a tentar encontrar alguma vulnerabilidade.
+
 O ficheiro **admin_note.txt** deu-nos uma dica, que existe uma vulnerabilidade na tmp folder que nos permitiria chegar à flag. Além disso, depois de ler o ficheiro **main.c**, através do comando **cat**, descobrimos que, possivelmente, existe um ficheiro chamado ***flag.txt*** na folder flags.
+
 Por fim, chegamos à conclusão que o script que corre regularmente no servidor tem mais privilégios que nós, por isso deduzimos que o script estaria relacionado com o ataque também.
 
 ``` 
@@ -62,4 +64,5 @@ LD_PRELOAD=/tmp/liblib.so.1.0.1
 ```
 
 Agora, basta esperar que o my_script.sh rode mais uma vez e a flag estará dentro do text.txt.
+
 No nosso caso era `flag{90069b3c95cdd8df71e65ce0fd7ce815}`
