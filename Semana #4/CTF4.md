@@ -7,13 +7,13 @@ Primeiramente, começamos por recolher o máximo de informação possível sobre
 
 O ficheiro **admin_note.txt** deu-nos uma dica, que existe uma vulnerabilidade na tmp folder que nos permitiria chegar à flag. Além disso, depois de ler o ficheiro **main.c**, através do comando **cat**, descobrimos que, possivelmente, existe um ficheiro chamado ***flag.txt*** na folder flags.
 
-Por fim, chegamos à conclusão que o script que corre regularmente no servidor tem mais privilégios que nós, por isso deduzimos que o script estaria relacionado com o ataque também.
-
 ``` 
 cat main.c
 ```
 
-Finalmente, tentamos aceder a flags folder, mas não tinhamos permissão.
+Por fim, chegamos à conclusão que o script que corre regularmente no servidor tem mais privilégios que nós, por isso deduzimos que o script estaria relacionado com o ataque também.
+
+Finalmente, tentamos aceder à flags folder, mas não tinhamos permissão.
 Com estas informações, começamos a construir um plano com o propósito de, de alguma forma, conseguir root privileges e ter acesso ao ficheiro ***flags.txt***.
 
 
