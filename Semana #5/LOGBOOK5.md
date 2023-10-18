@@ -130,3 +130,25 @@ content[offset:offset + L] = (ret).to_bytes(L,byteorder='little')
 with open('badfile', 'wb') as f:
   f.write(content)
 ```
+
+Foram necessárias fazer mudanças ao ficheiro original.<br>
+Primeiro, mudamos o shellcode para código de 32 bits, que tinha sido dado no ficheiro `call_shellcode.c`.
+Depois mudamos o start, que representa o início do shellcode na stack e calculamo-lo subtraindo o tamanho da shellcode ao tamanho lido do badfile, ou seja:
+
+```py
+start = 517 - len(shellcode)
+```
+
+Finalmente, falta calcular o novo return address, que nos vai levar ao shellcode, e o offset, que representa o tamanho entre o return address e o início do buffer.
+Para calcular o return address basta pegar no valor do **$ebp** e somar um número para que, depois de sair da função, o endereço esteja num local preenchido só por NOP's, que faz com que prossiga até, finalmente, chegar ao shellcode.<br>
+Para calcular o offset, temos que subtrair ao **$ebp** o valor do endereço do **buffer** e somar 4, para incluir o antigo return address:
+
+```py
+ret    = 0xffffcb18 + 190
+offset = 0xffffcb18 - 0xffffcaac + 4
+```
+
+Finalmente, corremos o `exploit.py`, que vai criar o `badfile`, seguido do `stack-L1` e obtemos a seguinte mensagem:
+**<---- Bingo! You’ve got a root shell!**
+
+## Task 4 - Launching Attack without Knowing Buffer Size (Level 2)
