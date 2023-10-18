@@ -33,8 +33,8 @@ Sabendo isto, devemos analisar o `main.c` e concluir se é possível fazer um at
 
 Muito rápido percebemos que sim, pois são criados 2 buffers:
 
-- meme_file[8] : buffer com o nome do ficheiro que será aberto pelo `main.c`
-- buffer[32] : buffer com informação que será imprimida no terminal
+- `meme_file[8]` : buffer com o nome do ficheiro que será aberto pelo `main.c`
+- `buffer[32]` : buffer com informação que será imprimida no terminal
 
 O buffer de leitura só tem 32 bytes de espaço, mas no código é chamada a função **scanf()** que vai ler 40 bytes.<br>
 Ora, desta forma, podemos enviar uma mensagem de 32 bytes e, como vão ser lidos 40 bytes, podemos escrever mais 8 bytes na memória e, deste modo, fazer **buffer overflow**.<br>
@@ -44,3 +44,15 @@ Como o meme_file contém o nome do ficheiro que será aberto pelo `main.c`, se a
 
 ## Desafio 2
 
+Este desafio é muito semelhante ao anterior, mas com algumas diferenças:
+
+- O buffer `meme_file` agora armazena 9 bytes, em vez de 8
+- Há um novo buffer `val[4]``
+- A funçao **scanf()** lê 45 bytes, em vez de 40
+
+Tal como no outro exercício, se preencheres-mos o `buffer[32]` por completo, consegui-mos alterar a informação dos outros buffers, devido ao **buffer overflow**, cuja causa é o **scanf()**, que lê mais informação do que o tamanho do `buffer`.<br>
+Além disso, notamos que, para o ficheiro cujo nome está armazenado no `meme_file[9]` ser aberto, é necessário uma condição ser verificada:
+***val = 0xfefc2324***<br>
+Portanto, para conseguirmos a flag, basta o nosso input ser algo do género:
+
+- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\x24\x23\xfc\xfeflag.txt
