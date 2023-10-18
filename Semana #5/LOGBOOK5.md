@@ -139,7 +139,7 @@ Depois mudamos o start, que representa o início do shellcode na stack e calcula
 start = 517 - len(shellcode)
 ```
 
-Finalmente, falta calcular o novo return address, que nos vai levar ao shellcode, e o offset, que representa o tamanho entre o return address e o início do buffer.
+Finalmente, falta calcular o novo return address, que nos vai levar ao shellcode, e o offset, que representa a distância entre o return address e o início do buffer. Isto é para escrevermos no `badfile`, onde anteriormente estava o return address, um return address novo, que nos levará ao shellcode.
 Para calcular o return address basta pegar no valor do **$ebp** e somar um número para que, depois de sair da função, o endereço esteja num local preenchido só por NOP's, que faz com que prossiga até, finalmente, chegar ao shellcode.<br>
 Para calcular o offset, temos que subtrair ao **$ebp** o valor do endereço do **buffer** e somar 4, para incluir o antigo return address:
 
