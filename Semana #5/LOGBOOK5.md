@@ -149,6 +149,9 @@ offset = 0xffffcb18 - 0xffffcaac + 4
 ```
 
 Finalmente, corremos o `exploit.py`, que vai criar o `badfile`, seguido do `stack-L1` e obtemos a seguinte mensagem:
-**<---- Bingo! You’ve got a root shell!**
+
+```
+# <---- Bingo! You’ve got a root shell!
+```
 
 ## Task 4 - Launching Attack without Knowing Buffer Size (Level 2)
