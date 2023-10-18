@@ -47,7 +47,7 @@ Como o meme_file contém o nome do ficheiro que será aberto pelo `main.c`, se a
 Este desafio é muito semelhante ao anterior, mas com algumas diferenças:
 
 - O buffer `meme_file` agora armazena 9 bytes, em vez de 8
-- Há um novo buffer `val[4]``
+- Há um novo buffer `val[4]`
 - A funçao **scanf()** lê 45 bytes, em vez de 40
 
 Tal como no outro exercício, se preencheres-mos o `buffer[32]` por completo, consegui-mos alterar a informação dos outros buffers, devido ao **buffer overflow**, cuja causa é o **scanf()**, que lê mais informação do que o tamanho do `buffer`.<br>
