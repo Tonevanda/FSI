@@ -224,6 +224,7 @@ Desta forma, após correr:
 ./stack-LX
 ```
 
-Onde **X** é um número de 1 a 4, conseguimos ter acesso à shell.
+Onde **X** é um número de 1 a 2, conseguimos ter acesso à shell.
 
 **P.S** : É preciso notar que os endereços variam de stack para stack, portanto não serão os mesmos para a stack-L1 e para a stack-L2.
+Além disso, as stacks L3 e L4 são de 64 bits, portanto não são relevantes a esta task.
