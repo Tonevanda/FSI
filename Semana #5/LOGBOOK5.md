@@ -206,9 +206,7 @@ Portanto, o novo return address ficou com o valor:
 ret = 0xffffcaac + 420
 ```
 
-Qual número funcionaria, desde que estivesse entre a localização do antigo **return address** e do início da shellcode, pois o espaço vai estar todo preenchido por NOP's (No Operation).
-
-Por fim, não podemos calcular onde colocar o novo return address como no exercício anterior, portanto recorremos a spraying:
+Por fim, não podemos calcular onde colocar o novo return address como no exercício anterior, portanto recorremos a **spraying**:
 
 ```py
 for offset in range(50):
