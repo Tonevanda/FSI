@@ -50,7 +50,7 @@ Este desafio é muito semelhante ao anterior, mas com algumas diferenças:
 - Há um novo buffer `val[4]`
 - A funçao **scanf()** lê 45 bytes, em vez de 40
 
-Tal como no outro exercício, se preencheres-mos o `buffer[32]` por completo, consegui-mos alterar a informação dos outros buffers, devido ao **buffer overflow**, cuja causa é o **scanf()**, que lê mais informação do que o tamanho do `buffer`.<br>
+Tal como no outro exercício, se preencheres-mos o `buffer[32]` por completo, conseguimos alterar a informação dos outros buffers, devido ao **buffer overflow**, cuja causa é o **scanf()**, que lê mais informação do que o tamanho do `buffer`.<br>
 Além disso, notamos que, para o ficheiro cujo nome está armazenado no `meme_file[9]` ser aberto, é necessário uma condição ser verificada:
 ***val = 0xfefc2324***<br>
 Portanto, para conseguirmos a flag, basta o nosso input ser algo do género:
