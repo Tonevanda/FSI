@@ -185,7 +185,7 @@ content[start:start + len(shellcode)] = shellcode
 
 # Decide the return address value 
 # and put it somewhere in the payload
-ret    = 0xffffcaac + 202*4
+ret    = 0xffffcaac + 420
 #offset = 0xffffcb18 - 0xffffcaac + 4  # Não é necessário para este caso
 
 L = 4     # Use 4 for 32-bit address and 8 for 64-bit address
@@ -199,11 +199,11 @@ with open('badfile', 'wb') as f:
   f.write(content)
 ```
 
-Desta vez, como não temos o **$ebp** para calcular o **ret**, usamos o endereço do início do `buffer`, devido a isto o número adicionado tem de ser maior do que o tamanho máximo do `buffer`, que é `200 * 4 = 800`, devido a ser endereços de 32 bits/4 bytes.<br>
+Desta vez, como não temos o **$ebp** para calcular o **ret**, usamos o endereço do início do `buffer`, devido a isto o número adicionado tem de ser maior do que o tamanho máximo do `buffer`, que é **200 bytes** e ser alto o suficiente para atingir a zona preenchida por NOP's <br>
 Portanto, o novo return address ficou com o valor:
 
 ```
-ret    = 0xffffcaac + 202*4
+ret = 0xffffcaac + 420
 ```
 
 Qual número funcionaria, desde que estivesse entre a localização do antigo **return address** e do início da shellcode, pois o espaço vai estar todo preenchido por NOP's (No Operation).
@@ -225,3 +225,5 @@ Desta forma, após correr:
 ```
 
 Onde **X** é um número de 1 a 4, conseguimos ter acesso à shell.
+
+**P.S** : É preciso notar que os endereços variam de stack para stack, portanto não serão os mesmos para a stack-L1 e para a stack-L2.
