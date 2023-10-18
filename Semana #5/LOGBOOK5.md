@@ -202,7 +202,7 @@ with open('badfile', 'wb') as f:
 Desta vez, como não temos o **$ebp** para calcular o **ret**, usamos o endereço do início do `buffer`, devido a isto o número adicionado tem de ser maior do que o tamanho máximo do `buffer`, que é **200 bytes** e ser alto o suficiente para atingir a zona preenchida por NOP's <br>
 Portanto, o novo return address ficou com o valor:
 
-```
+```py
 ret = 0xffffcaac + 420
 ```
 
@@ -210,7 +210,7 @@ Qual número funcionaria, desde que estivesse entre a localização do antigo **
 
 Por fim, não podemos calcular onde colocar o novo return address como no exercício anterior, portanto recorremos a spraying:
 
-```
+```py
 for offset in range(50):
   content[offset*L:offset*L + L] = (ret).to_bytes(L,byteorder='little') 
 ```
