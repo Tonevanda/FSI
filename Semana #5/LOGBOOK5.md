@@ -157,7 +157,7 @@ Finalmente, corremos o `exploit.py`, que vai criar o `badfile`, seguido do `stac
 ## Task 4 - Launching Attack without Knowing Buffer Size (Level 2)
 
 
-Embora este exercício seja semelhante ao anterior, o facto de não sabermos o tamanho do buffer leva-nos a ter de ter uma approach diferente em relação, especialmente, ao return address. Como não é suposto sabermos o **$ebp**, não conseguimos calcular o offset e, portanto, não conseguimos dar pinpoint à localização do return address que queremos override.<br>
+Embora este exercício seja semelhante ao anterior, o facto de não sabermos o tamanho do buffer leva-nos a ter de ter uma approach diferente em relação, especialmente, ao return address. Como não é suposto sabermos o **$ebp**, não conseguimos calcular o offset e, portanto, não conseguimos dar pinpoint à localização do return address que queremos dar override.<br>
 Vamos, portanto, ter de recorrer a **spraying**.
 
 **Spraying** consiste em encher o buffer com o novo return address que queremos, pois, assim, mesmo não sabendo o tamanho do `buffer` e, por sua vez, o endereço do return address, como sabemos o tamanho máximo do `buffer` sabemos o endereço máximo que o antigo return address pode ocupar.
@@ -185,7 +185,7 @@ content[start:start + len(shellcode)] = shellcode
 
 # Decide the return address value 
 # and put it somewhere in the payload
-ret    = 0xffffcaac + 201*4
+ret    = 0xffffcaac + 202*4
 #offset = 0xffffcb18 - 0xffffcaac + 4  # Não é necessário para este caso
 
 L = 4     # Use 4 for 32-bit address and 8 for 64-bit address
@@ -203,8 +203,10 @@ Desta vez, como não temos o **$ebp** para calcular o **ret**, usamos o endereç
 Portanto, o novo return address ficou com o valor:
 
 ```
-ret    = 0xffffcaac + 201*4
+ret    = 0xffffcaac + 202*4
 ```
+
+Qual número funcionaria, desde que estivesse entre a localização do antigo **return address** e do início da shellcode, pois o espaço vai estar todo preenchido por NOP's (No Operation).
 
 Por fim, não podemos calcular onde colocar o novo return address como no exercício anterior, portanto recorremos a spraying:
 
@@ -213,4 +215,13 @@ for offset in range(50):
   content[offset*L:offset*L + L] = (ret).to_bytes(L,byteorder='little') 
 ```
 
-Este **ciclo for** vai colocar, em todos os endereços do `buffer`, o novo return address, calculado anteriormente.
+Este **ciclo for** vai colocar em todos os endereços do `buffer` o novo return address, calculado anteriormente.
+
+Desta forma, após correr:
+
+```
+./exploit.py
+./stack-LX
+```
+
+Onde **X** é um número de 1 a 4, conseguimos ter acesso à shell.
