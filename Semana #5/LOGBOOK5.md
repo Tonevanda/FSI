@@ -65,11 +65,11 @@ Depois de fazer **make**, são criados 4 pares de ficheiros executáveis:
 - `stack-L3` e `stack-L3.dbg`
 - `stack-L4` e `stack-L4.dbg`
 
-Agora, falta mudar o conteúdo do `badfile`` para conseguirmos dar exploit à vulnerabilidade existente.
+Agora, falta mudar o conteúdo do `badfile` para conseguirmos dar exploit à vulnerabilidade existente.
 
 ## Task 3 - Launching Attack on 32-bit Program (Level 1)
 
-Primeiro, temos que criar o ficheiro `badfile``:
+Primeiro, temos que criar o ficheiro `badfile`:
 
 ```
 touch badfile
