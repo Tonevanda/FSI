@@ -16,7 +16,7 @@ Portanto, para construirmos o nosso ataque, fizemos o seguinte:
 
 - Retiramos a flag **disabled** do input que tem o botão
 - Adicionamos `http://ctf-fsi.fe.up.pt:5005` ao início do link da action do form
-- Criamos um script que vai clicar no botão com o **id** `giveflag` e submeter o forms logo após o código correr
+- Criamos um script que vai clicar no botão com o **id** = **giveflag** e submeter o form logo após o código correr
 
 No final, o form que submetemos no input `Beg for a flag` foi o seguinte:
 
