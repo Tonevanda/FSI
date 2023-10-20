@@ -1,3 +1,3 @@
 # CTF #6 - Apply For a Flag II
 
-![](https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fimage&psig=AOvVaw2eRJ5qm6V54aN5_fbKfSz8&ust=1697921576036000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCLDlwIzBhYIDFQAAAAAdAAAAABAE)
+![](https://images.unsplash.com/photo-1575936123452-b67c3203c357?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D)
