@@ -1,7 +1,7 @@
 # Semana #5 - Buffer-Overflow Attack Lab - Set-UID Version
 
 ## Task 1 - Getting familiar with shellcode
-![Alt text](image.png)
+
 Esta task familiariza-nos com shellcode. Aprendemos que a melhor maneira para correr shellcode é através de código assembly. Aprendemos, também, um pouco sobre o código assembly utilizado para chamar a função **execve()** e executar `/bin//sh`.
 Depois de compilar o ficheiro `call_shellcode.c`, são criados 2 ficheiros:
 
