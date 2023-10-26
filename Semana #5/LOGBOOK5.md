@@ -96,7 +96,7 @@ p &buffer
 
 Que retornou `0xffffca1c`.<br>
 
-![image](https://git.fe.up.pt/fsi/fsi2324/logs/l03g07/-/blob/main/Semana%20%235/images/addresses.png)
+![image](../Semana%20#5/images/addresses.png)
 
 Por fim, alteramos o ficheiro `exploit.py` para ter os valores dos endereços obtidos. O ficheiro final ficou assim:
 
@@ -152,7 +152,7 @@ offset = 0xffffca88 - 0xffffca1c + 4
 
 Finalmente, corremos o `exploit.py`, que vai criar o `badfile`, seguido do `stack-L1` e obtemos acesso à shell.
 
-![image](https://git.fe.up.pt/fsi/fsi2324/logs/l03g07/-/blob/main/Semana%20%235/images/task3proof.png)
+![image](../Semana%20#5/images/task3proof.png)
 
 
 ## Task 4 - Launching Attack without Knowing Buffer Size (Level 2)
