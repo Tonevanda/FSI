@@ -33,4 +33,4 @@ No final, o form que submetemos no input `Beg for a flag` foi o seguinte:
 
 Por fim, para concluir o nosso ataque, tivemos que desativar o javascript, através das definições do browser, para impedir que fossemos redirecionados.
 
-Após submeter o form alterado no input `Beg for a flag` e desativado o javascript, basta dar refresh à página que a flag estará presente onde costuma estar escrito **Your request hasn't been evaluated yet!**.
+Após submeter o form alterado no input `Beg for a flag` e desativado o javascript, basta dar refresh à página que a flag estará presente onde costuma estar escrito **Your request hasn't been evaluated yet!**
