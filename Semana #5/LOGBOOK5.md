@@ -96,7 +96,7 @@ p &buffer
 
 Que retornou `0xffffca1c`.<br>
 
-![image](./images/addresses.png)
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l03g07/-/blob/main/Semana%20%25235/images/addresses.png)
 
 Por fim, alteramos o ficheiro `exploit.py` para ter os valores dos endereços obtidos. O ficheiro final ficou assim:
 
@@ -152,7 +152,7 @@ offset = 0xffffca88 - 0xffffca1c + 4
 
 Finalmente, corremos o `exploit.py`, que vai criar o `badfile`, seguido do `stack-L1` e obtemos acesso à shell.
 
->![image](./images/task3proof.png)
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l03g07/-/blob/main/Semana%20%25235/images/task3proof.png)
 
 
 ## Task 4 - Launching Attack without Knowing Buffer Size (Level 2)
@@ -225,7 +225,7 @@ Desta forma, após correr:
 
 Onde **X** é um número de 1 a 2, conseguimos ter acesso à shell.
 
->![image](./images/task3proof.png)
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l03g07/-/blob/main/Semana%20%25235/images/task3proof.png)
 
 **P.S** : É preciso notar que os endereços variam de stack para stack, portanto não serão os mesmos para a stack-L1 e para a stack-L2.
 Além disso, as stacks L3 e L4 são de 64 bits, portanto não são relevantes a esta task.
