@@ -39,5 +39,5 @@ Com o ficheiro pronto para ser enviado, basta enviar a mensagem para o servidor,
 
 `cat badfile | nc 10.9.0.5 9090`
 
-Com isto, o servidor não respondeu com **(^_^)(^_^)  Returned properly (^_^)(^_^)**, o que significa que crashou.
+Com isto, o servidor não respondeu com **(^/_^)(^/_^)  Returned properly (^/_^)(^/_^)**, o que significa que crashou.
 
