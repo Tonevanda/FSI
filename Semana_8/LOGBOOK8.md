@@ -47,7 +47,7 @@ WHERE name= 'admin'# and Password='$hashed_pwd'";
 
 Com isto, conseguimos ser autenticados na conta do **admin**, mesmo sem saber a password.
 
-|[image](Semana_8/images/image3.png)
+![image](Semana_8/images/image3.png)
 
 
 ### Task 2.2 - SQL Injection Attack from command line
