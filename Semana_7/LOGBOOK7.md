@@ -39,7 +39,7 @@ Com o ficheiro pronto para ser enviado, basta enviar a mensagem para o servidor,
 
 `cat badfile | nc 10.9.0.5 9090`
 
-![image](Semana_7\images\image.png)
+![image](Semana_7/images/image.png)
 
 Com isto, o servidor não respondeu com **(^\_^)(^\_^)  Returned properly (^\_^)(^\_^)**, o que significa que crashou.
 
@@ -76,7 +76,7 @@ Agora, basta correr o `build_string.py` para criar o `badfile` e rodar o comando
 
 E obtemos a seguinte resposta:
 
-![image](Semana_7\images\image2.png)
+![image](Semana_7/images/image2.png)
 
 Como podemos observar, o nosso inteiro **0xbfffeeee** foi printado no terminal após 64 bytes.
 
@@ -106,7 +106,7 @@ with open('badfile', 'wb') as f:
 
 Alteramos o input para o servidor ler o que está no endereço `0x080b4008`, escrever as próximas 63 posições e finalmente escrever em formato string o que estava no endereço dado no input.
 
-![image](Semana_7\images\image3.png)
+![image](Semana_7/images/image3.png)
 
 Concluímos que a mensagem secreta é **A secret message**
 
@@ -138,7 +138,7 @@ with open('badfile', 'wb') as f:
   f.write(content)
 ```
 
-![image](Semana_7\images\image4.png)
+![image](Semana_7/images/image4.png)
 
 Como podemos observar, a variável `target` ficou com o valor **0x000001fc**, e inicialmente era **11223344**
 
@@ -151,6 +151,6 @@ Portanto s fica: `"%.19980x" + "%.8x"*62 + "%n"`<br>
 
 Quando enviamos a mensagem ao servidor observamos o seguinte:
 
-![image](Semana_7\images\image5.png)
+![image](Semana_7/images/image5.png)
 
 Como podemos ver, a variável `target` ficou com valor **0x5000**.
