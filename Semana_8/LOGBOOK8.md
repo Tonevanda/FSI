@@ -56,7 +56,9 @@ Esta task é semelhante à anterior, mas pela command line, ou seja, temos que m
 
 Para fazer isso, inserimos o seguinte comando no terminal:
 
-`curl "http://www.seed-server.com/unsafe_home.php?username=admin%27%23&Password="`
+``` 
+curl "http://www.seed-server.com/unsafe_home.php?username=admin%27%23&Password="
+```
 
 Neste caso, como precisamos de escapar o caracter `'` e `#` eles são representados com `%27` e `%23`, respetivamente. 
 
