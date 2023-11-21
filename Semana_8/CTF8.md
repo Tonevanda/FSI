@@ -11,4 +11,4 @@ Mesmo a password não sendo processada pela query devido ao `#`, como o field **
 
 Com isso, obtemos a flag **flag{5f62c33d36bbd8fb2e50343dcf66ee70}**
 
-![image](/images/ctf8.png)
+![image](Semana_8/images/ctf8.png)
