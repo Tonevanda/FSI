@@ -4,13 +4,13 @@
 
 Primeiramente, temos que utilizar o `checksec` para descobrir mais informação sobre o programa:
 
-![image](Semana_7\images\checksec.png)
+![image](Semana_7/images/checksec.png)
 
 Como podemos ver, existe um **Stack Canary**, portanto não podemos fazer Buffer Overflow.<br>
 
 Depois, utilizamos o `gdb` para descobrir o endereço da variável global `flag`:
 
-![image](Semana_7\images\gdb.png)
+![image](Semana_7/images/gdb.png)
 
 Como podemos observar, o endereço da flag é `0x804c060`. Com este endereço, podemos utilizar um ataque de format string, pois há uma vulnerabilidade no `main.c`, onde são chamados **printf()** sem passar parâmetros de formato. Para fazer o ataque, alteramos o `exploit_example.py` para o seguinte:
 
