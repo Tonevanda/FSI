@@ -108,3 +108,41 @@ AND THE BAFTA BUT ITS FILMMAKER MARTIN MCDONAGH WAS NOT NOMINATED FOR BEST
 DIRECTOR AND APART FROM ARGO MOVIES THAT LAND BEST PICTURE WITHOUT ALSO
 EARNING BEST DIRECTOR NOMINATIONS ARE FEW AND FAR BETWEEN
 ```
+
+## Task 2 - Encryption using Different Ciphers and Modes
+
+Nesta task aprendemos como utilizar **openssl** para encriptar e desencriptar ficheiros.
+
+Utilizando o ficheiro `out.txt` da task anterior, que possui plain text, podemos encriptá-lo utilizando **openssl** da seguinte forma:
+
+```shell
+openssl enc -aes-128-cbc -e -in out.txt -out cipher.bin -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+```
+
+Com este comando, estamos a utilizar o cipher **-aes-128-cbc** para encriptar **-e** o input **-in** `out.txt` e criar como output **-out** o ficheiro `cipher.bin`.<br>
+Agora, com o ficheiro `cipher.bin`, se o quisermos decriptar podemos fazer o seguinte:
+
+```shell
+openssl enc -aes-128-cbc -d -in cipher.bin -out plain.txt -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+```
+
+## Task 3 - Encryption Mode -ECB vs CBC
+
+Para encriptar a imagem original `pic_original.bmp` iremos usar o cipher **-aes-128-cbc**:
+
+```shell
+openssl enc -aes-128-cbc -e -in pic_original.bmp -out p2.bmp -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+```
+
+Agora temos um ficheiro `p2.bmp`, com o binário do ficheiro `pic_original.bmp` encriptado. No entanto, precisamos de presevar o header do ficheiro `pic_original.bmp`, pois contém informação necessária para ser reconhecido como um ficheiro `.bmp`. <br>
+Ou seja, o ficheiro final encriptado irá conter o header do ficheiro `pic_original.bmp` e o body do ficheiro `p2.bmp`. Podemos fazer isso da seguinte forma:
+
+```shell
+head -c 54 pic_original.bmp > header
+tail -c +55 p2.bmp > body
+cat header body > new.bmp
+```
+
+Obtemos, assim, um novo ficheiro `new.bmp`, que, quando aberto, é uma imagem completamente diferente da imagem original.
+
+![image](Semana_10/images/imagecrypt.png)

