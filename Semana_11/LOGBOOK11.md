@@ -125,3 +125,24 @@ service apache2 start
 ![image](./images/apachestart.png)
 
 Agora, podemos aceder ao servidor através do url `www.bank32.com`: 
+
+![image](./images/serverinsecure.png)
+
+Se tentarmos aceder ao servidor através do url `https://www.bank32.com`, obtermos o seguinte resultado : 
+
+![image](./images/httpswarning.png)
+
+Isto é devido à ligação não estar encriptada. Para resolver isso, temos que adicionar o nosso certificado à lista de certificados do FireFox.
+
+Para fazer isso, vamos ao url `about:preferences#privacy` -> Security -> Certificates -> View Certificates -> Authorities -> Import e escolhemos o ficheiro `ca.crt`.
+
+![image](./images/lavraftw.png)
+
+Como podemos observar, o nosso certificado está agora na lista de certificados do FireFox.
+
+Agora, se tentarmos aceder ao servidor pelo url `https://www.bank32.com`, vemos o seguinte:
+
+![image](./images/serversecure.png)
+
+## Task 5 - Launching a Man-In-The-Middle Attack
+
