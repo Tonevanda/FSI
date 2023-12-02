@@ -146,3 +146,42 @@ Agora, se tentarmos aceder ao servidor pelo url `https://www.bank32.com`, vemos 
 
 ## Task 5 - Launching a Man-In-The-Middle Attack
 
+Primeiro, temos que alterar o ficheiro `/etc/apache2/sites-available/bank32_apache_ssl.conf` de forma a que o `ServerName` seja `example.com` :
+
+![image](./images/example.png)
+
+Depois disso, temos que alterar agora o ficheiro `/etc/hosts` de forma a que o IP que anteriormente apontava para `www.bank32.com` agora aponte para `www.example.com`. Podemos alterar esse ficheiro com o seguinte comando: 
+
+```shell
+sudo nano /etc/hosts
+```
+
+Agora, após recomeçar o servidor, quando visitamos `www.example.com` observamos o seguinte:
+
+![image](./images/exampletask5.png)
+
+Como podemos ver, o certificado não foi confiado e o browser alerta-nos para um possível risco.
+
+## Task 6 - Launching a Man-In-The-Middle Attack with a Compromised CA
+
+Assumindo que um atacante conseguiu obter posse da chave privada da root **CA**, ele consegue gerar certificados utilizando essa chave privada. Ele consegue fazer isso da seguinte forma:
+
+```shell
+openssl req -newkey rsa:2048 -sha256 -keyout example.key -out example.csr -subj "/CN=www.example.com/O=example Inc./C=US" -passout pass:1234
+
+openssl ca -config openssl.cnf -policy policy_anything -md sha256 -days 3650 -in example.csr -out example.crt -batch -cert ca.crt -keyfile ca.key
+```
+
+Estes 2 comandos foram utilizados na tarefa 2 para gerar os certificados para o servidor `www.bank32.com`
+
+![image](./images/task6cert.png)
+
+Como podemos ver, conseguimos criar um certificado para uma organização chamada `example Inc.` cujo website é `www.example.com`.
+
+Agora, só precisamos de alterar o ficheiro `/etc/apache2/sites-available/bank32_apache_ssl.conf` de forma a que ele use os ficheiros `example.crt` e `example.key`, que acabamos de criar com o root **CA**.
+
+![image](./images/task6apache.png)
+
+Se tentarmos aceder ao url `www.example.com`, conseguimos ver que a conexão é segura, ou seja, o ataque foi bem sucedido.
+
+![image](./images/task6example.png)
