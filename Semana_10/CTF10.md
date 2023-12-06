@@ -1,7 +1,7 @@
 # CTF Semana 10 - Weak Encryption
 
 
-## Analização do problema
+## Identificação do problema
 
 Primeiramente, conseguimos ver que há um problema na linha que define a variável `offset`.
 Existe uma variável global `KEY_LEN` com valor 16, o que significa que a key gerada terá 16 bytes, mas pela função **gen()** conseguimos notar que os primeiros 13 bytes da key serão sempre 0 : 
@@ -14,7 +14,7 @@ def gen():
 	return bytes(key)
 ```
 
-Assim, só os últimos 3 bytes da key serão variáveis, o que torna esta criptação vulnerável a ataques brute-force
+Assim, só os últimos 3 bytes da key serão variáveis, o que torna esta criptação vulnerável a ataques brute-force.
 
 ## Montando um ataque
 
@@ -30,7 +30,7 @@ for i in range(256):
 		for k in range(256):
 			key = b'\x00'*13 + bytes([i,j,k])
 			plain = binascii.hexlify(dec(key,ciphertext,nonce))
-			if plain.startswith(b'666c61677b'):
+			if plain.startswith(b'666c61677b'): # 'flag{' em hexadecimal
                 		print(binascii.unhexlify(plain))
                 		print("Found the flag!")
                 		exit()
