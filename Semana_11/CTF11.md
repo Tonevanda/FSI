@@ -14,7 +14,7 @@ O problema é que nós sabemos que **p** é um número primeiro próximo a 2^512
 
 ## Montando o Ataque
 
-Usamos o algoritmo de Miller-Rabin para calcular um número primo **p** próximo a 5^12, depois, como temos **n**, podemos calcular **q** dividindo **n** por **p**. Depois, usamos calculamos **d** e utilizamos isso para dar decode do `ciphertext`:
+Usamos o algoritmo de Miller-Rabin para calcular um número primo **p** próximo a 5^12, depois, como temos **n**, podemos calcular **q** dividindo **n** por **p**. Depois, usamos **p** e **q** para calcular **d** e utilizamos isso para dar decode do `ciphertext`:
 
 ```python
 # Python Module ciphersuite
