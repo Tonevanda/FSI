@@ -25,7 +25,6 @@ nonce = binascii.unhexlify("158d7f0badc79883e78258ae58bc5823")
 ciphertext = binascii.unhexlify("2812c2e36fe5f662ddfd42d67a7657d5090a3773d5e0daf60952e737e39fb33d260bdf00d7510c")
 
 for i in range(256):
-	print(i)
 	for j in range(256):
 		for k in range(256):
 			key = b'\x00'*13 + bytes([i,j,k])
