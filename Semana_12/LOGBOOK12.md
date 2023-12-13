@@ -50,3 +50,16 @@ python3 mycode.py
 ```
 
 ![image](images/task1IP.png)
+
+## Task 1.1 - Sniffing Packets
+
+Agora, temos de criar um ficheiro `sniffer.py`:
+
+```py
+from scapy.all import *
+
+def print_pkt(pkt):
+	pkt.show()
+
+pkt = sniff(iface= 'br-35f18959ffa2', filter='icmp', prn=print_pkt)
+```
