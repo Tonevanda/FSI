@@ -159,4 +159,50 @@ Quando abrimos o **Wireshark**, observamos o seguinte:
 
 ## Task 1.4 - Sniffing and-then Spoofing
 
-br-35f18959ffa2'
+Para realizar esta tarefa, utilizamos o código de tarefas anteriores para criar um script que faz **sniffing** seguido de **spoofing**:
+
+```py
+from scapy.all import *
+
+def spoof_icmp_reply(packet):
+    if packet.haslayer(ICMP) and packet[ICMP].type == 8:
+        print(f"Received ICMP Echo Request from {packet[IP].src}")
+        a = IP()
+        a.dst='8.8.8.8'
+        b=ICMP()
+        p=a/b
+        send(p)
+        print(f"Sent ICMP Echo Reply to {p.dst}")
+
+sniff(iface='br-35f18959ffa2', filter='icmp', prn=spoof_icmp_reply)
+```
+
+Como podemos ver, este script fica `sniffing` por packets e, quando deteta algum, chama a função `spoof_icmp_reply`.
+
+Esta função printa o **IP** do **request** que recebeu e depois faz `spoofing`, da mesma forma que foi feita na tarefa 1.2.
+
+Neste caso, decidimos enviar resposta para o **IP** `8.8.8.8`.
+
+### Non-existent IP on the Internet
+
+Testando o nosso script com um **IP** não existente na Internet, tal como `1.2.3.4` conseguimos observar o seguinte no **Wireshark**:
+
+![image](images/1234wireshark.png)
+
+Como podemos ver, são enviados **requests** para o **IP** `1.2.3.4`, através do comando `ping` e, imediatamente após esses pedidos, são enviados pedidos para o **IP** `8.8.8.8`, devido ao `sniffing and spoofing`. Com isto, ao enviar requests para um **IP** não existente na Internet, vamos sempre obter uma resposta, no nosso caso a resposta era do **IP** `8.8.8.8`
+
+### Non-existent IP on LAN
+
+Testando o nosso script com um **IP** não existente na Internet, tal como `10.9.0.99` conseguimos observar o seguinte:
+
+![image](images/lanping.png)
+
+![image](images/lansniff.png)
+
+![image](images/lanwireshark.png)
+
+Como podemos ver, como **Destination Host Unreachable**, não chegam a ser enviados packets, portanto o ficheiro que faz `sniff and spoof` não tem packets para detetar.
+Da mesma forma que, como podemos ver, o **Wireshark** está vazio, isto porque, outra vez, não chegaram a ser enviados packets.
+
+### Existing IP on the Internet
+
