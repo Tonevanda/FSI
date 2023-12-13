@@ -36,7 +36,7 @@ python3 mycode.py
 
 ![image](images/task1IP.png)
 
-## Task 1.1 - Sniffing Packets
+## Task 1.1A - Sniffing Packets
 
 Agora, temos de criar um ficheiro `sniffer.py` na pasta `volumes`:
 
@@ -59,6 +59,9 @@ Se abrirmos um shell num dos outros 2 container e fizermos `ping 8.8.8.8`, vemos
 
 ![image](images/packetsniffing1.png)
 
+## Task 1.1B - Packet Filtering
+
+### TCP Packet Filter
 
 Se quisermos alterar o filtro de forma a capturar qualquer TCP packet que vem de um certo IP e com port de destino 23 podemos alterar o `sniffer.py` da seguinte forma:
 
@@ -76,6 +79,8 @@ pkt = sniff(iface='br-35f18959ffa2', filter=filter_expression, prn=print_pkt)
 
 ```
 
+## Subnet Packet Filter
+
 Se agora quisermos capturar packets que vêm de ou vão para uma certa subnet podemos fazer o seguinte:
 
 ```py
@@ -90,3 +95,28 @@ filter_expression = f'(src net {target_subnet} or dst net {target_subnet})'
 
 pkt = sniff(iface='br-35f18959ffa2', filter=filter_expression, prn=print_pkt)
 ```
+
+## Task 1.2 - Spoofing ICMP Packets
+
+Primeiro, na pasta `volumes` criamos um ficheiro `spoofer.py`:
+
+```py
+from scapy.all import *
+
+a = IP()
+a.dst='10.0.2.3'
+b=ICMP()
+p=a/b
+send(p)
+```
+
+Se corrermos este código com `sudo python3 spoofer.py` obtemos o seguinte:
+
+![image](images/spoofer1.png)
+
+Como podemos ver, o pacote foi enviado.
+
+Se abrirmos o **Wireshark**, em modo root, para analisar o envio do pacote, conseguimos observar o seguinte:
+
+|[image](images/wiresharkspoof.png)
+
