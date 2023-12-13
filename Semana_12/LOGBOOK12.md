@@ -193,7 +193,7 @@ Como podemos ver, são enviados **requests** para o **IP** `1.2.3.4`, através d
 
 ### Non-existent IP on LAN
 
-Testando o nosso script com um **IP** não existente na Internet, tal como `10.9.0.99` conseguimos observar o seguinte:
+Testando o nosso script com um **IP** não existente em LAN, tal como `10.9.0.99` conseguimos observar o seguinte:
 
 ![image](images/lanping.png)
 
@@ -206,3 +206,12 @@ Da mesma forma que, como podemos ver, o **Wireshark** está vazio, isto porque, 
 
 ### Existing IP on the Internet
 
+Testando o nosso script com um **IP** existente na Internet, tal como `8.8.8.8` conseguimos observar o seguinte:
+
+![image](images/googleping.png)
+
+![image](images/googlesniff.png)
+
+![image](images/googlewireshark.png)
+
+Como podemos ver, como `8.8.8.8` é um **IP** existente, os **requests** são sniffados com sucesso e são obtidas respostas a cada **request**.
