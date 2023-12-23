@@ -122,7 +122,7 @@ Se abrirmos o **Wireshark**, em modo root, para analisar o envio do pacote, cons
 
 ## Task 1.3 - Traceroute
 
-Para realizar esta task, desenvolvemos o seguinte [script](traceroute.py):
+Para realizar esta task, desenvolvemos o seguinte [script](scripts/traceroute.py):
 
 ```py
 from scapy.all import *
